@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Template letters · Jude's Justice PMLD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<script src="site.js"></script>
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}*,*::before,*::after{box-sizing:border-box}img{max-width:100%}</style>
+</head>
+<body>
+
+<div class="stickyhead"><div class="wrap">
+  <header class="top">
+    <div class="brand"><a href="index.html">Jude's <span>Justice</span></a></div>
+    <nav class="sitenav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="pmld.html">What is PMLD</a>
+      <details class="navgroup active">
+        <summary>Help and rights</summary>
+        <div class="navpanel">
+          <a href="benefits.html">Benefits</a>
+          <a href="letters.html" aria-current="page">Template letters</a>
+          <a href="services.html">Support services</a>
+        </div>
+      </details>
+      <details class="navgroup">
+        <summary>Care</summary>
+        <div class="navpanel">
+          <a href="health.html">Health and hospital</a>
+          <a href="training.html">Training</a>
+          <a href="equipment.html">Equipment</a>
+          <a href="own-week.html">Build your own week</a>
+        </div>
+      </details>
+      <a href="places.html">Places and therapies</a>
+      <a href="my-file.html">My file<span class="count" data-myfile-count hidden></span></a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+</div></div>
+
+<div class="wrap">
+  <div class="article">
+    <nav class="toc" aria-label="Letters">
+      <p>Choose a letter</p>
+      <div id="letter-list" class="letter-list"></div>
+    </nav>
+
+    <div class="prose">
+      <h1>Template letters</h1>
+      <p class="lede">Pick a letter, fill in the boxes, and copy it into an email or document. Your name, address and the person's details come from <a href="my-file.html">My file</a>.</p>
+      <p id="myfile-hint" class="callout" hidden><span class="label">Save time</span><span>Fill in <a href="my-file.html">My file</a> once and your details will appear in every letter.</span></p>
+
+      <h2 id="letter-title"></h2>
+      <p id="letter-when" class="muted"></p>
+      <div class="panel">
+        <div class="fields" id="letter-fields"></div>
+      </div>
+
+      <div class="letter" id="letter-preview" aria-live="polite"></div>
+      <div class="btns">
+        <button class="btn" type="button" id="copy-letter">Copy letter</button>
+        <span class="status" id="copy-letter-status" aria-live="polite"></span>
+      </div>
+      <textarea id="letter-fallback" style="width:100%;min-height:14rem;font:inherit" hidden readonly aria-label="Letter text"></textarea>
+
+      <div class="callout">
+        <p class="label">Before you send</p>
+        <ul>
+          <li>Anything <mark>highlighted</mark> still needs filling in.</li>
+          <li>Keep a copy, and add the date you sent it to <a href="my-file.html#log">your record</a>.</li>
+          <li>These are templates for information, not legal advice. The laws they mention were checked on legislation.gov.uk on 29 September 2026.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Jude's Justice PMLD is a Scottish Charitable Incorporated Organisation (SCIO), Scottish charity number SC055712. Principal office: Office 1618, 3 Fitzroy Place, 1/1 Sauchiehall Street, Glasgow G3 7RH.</p>
+    <p>We give information, not legal advice, and we do not act in court proceedings. Where you need a lawyer, see <a href="services.html#legal">Legal help</a>.</p>
+  </div>
+</footer>
+<script>
+(function () {
+  function today() { return new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
+  function ukDate(iso) { if (!iso) return ''; var d = new Date(iso + 'T12:00:00'); return isNaN(d) ? iso : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
+
+  var LETTERS = [
+    { id: 'assessment', title: 'Ask for an assessment of needs', to: 'council',
+      when: 'Use this when the person you care for needs support from social work, or their needs have changed.',
+      fields: [
+        { k: 'why', label: 'Why support is needed now', type: 'area', hint: 'For example: needs have changed, a carer can no longer manage, a recent hospital stay.' }
+      ],
+      subject: function (d) { return 'Request for an assessment of needs: ' + d.person_name + ', born ' + d.person_dob; },
+      body: function (d) { return [
+        'I am writing as ' + d.person_name + "'s " + d.your_role + ' to ask for an assessment of ' + d.person_name + "'s needs for community care services.",
+        'Section 12A(1) of the Social Work (Scotland) Act 1968 says that where it appears to a local authority that a person may be in need of community care services, the authority shall assess that person\'s needs and then decide whether those needs call for the provision of services.',
+        d.why,
+        'Please confirm in writing:\n- that you have received this request\n- the name of the person who will carry out the assessment\n- the date the assessment will take place',
+        'Please also include information about the self-directed support options, so that ' + d.person_name + "'s choices can be discussed as part of the assessment."
+      ]; } },
+
+    { id: 'carer', title: 'Ask for a carer support plan', to: 'council',
+      when: 'Use this to ask for support for yourself as an unpaid carer.',
+      fields: [
+        { k: 'carer_needs', label: 'What would help you as a carer', type: 'area', hint: 'For example: breaks from caring, help with sleep, time for your own health.' }
+      ],
+      subject: function (d) { return 'Request for an adult carer support plan: ' + d.your_name; },
+      body: function (d) { return [
+        'I am an unpaid carer for ' + d.person_name + ', born ' + d.person_dob + '. I am writing to request an adult carer support plan.',
+        'Section 6(4) of the Carers (Scotland) Act 2016 applies where a person who appears to be an adult carer requests an adult carer support plan, and section 6(3) says the local authority must then prepare one.',
+        'The things that would help me most are:\n' + d.carer_needs,
+        'Please confirm in writing that you have received this request, the name of the person who will prepare my plan, and when we will meet.'
+      ]; } },
+
+    { id: 'chase', title: 'Chase a promise', to: 'either',
+      when: 'Use this when something was promised, such as equipment, a service or a meeting, and it has not happened.',
+      fields: [
+        { k: 'promised', label: 'What was promised', type: 'area', hint: 'For example: a new wheelchair, with seating assessed as needed.' },
+        { k: 'promised_date', label: 'Date it was promised', type: 'date' },
+        { k: 'promised_by', label: 'Who promised it', hint: 'Name and job title, if you know them.' },
+        { k: 'chased', label: 'When you have already chased it', type: 'area', hint: 'Dates and who you spoke to. Your record in My file will help.' },
+        { k: 'reply_by', label: 'Reply by', type: 'date', hint: 'Allow about 10 working days.' }
+      ],
+      subject: function (d) { return 'Outstanding: ' + d.promised.split('\n')[0] + ' for ' + d.person_name; },
+      body: function (d) { return [
+        'I am writing as ' + d.person_name + "'s " + d.your_role + '.',
+        'On ' + ukDate(d.promised_date) + ', ' + d.promised_by + ' told me that ' + d.person_name + ' would receive:\n' + d.promised,
+        'This has still not happened. I have already chased it:\n' + d.chased,
+        'Please reply in writing by ' + ukDate(d.reply_by) + ' and tell me:\n- what is causing the delay\n- the date it will be provided\n- the name of the person responsible',
+        'If I do not hear from you by then, I will treat this as a complaint under your complaints handling procedure.'
+      ]; } },
+
+    { id: 'complaint', title: 'Make a complaint', to: 'either',
+      when: 'Use this for a formal complaint to a council, health and social care partnership or NHS board.',
+      fields: [
+        { k: 'what_happened', label: 'What happened', type: 'area', hint: 'Facts and dates. Keep it short.' },
+        { k: 'impact', label: 'The effect it has had', type: 'area' },
+        { k: 'outcome', label: 'What you want to happen', type: 'area', hint: 'Be specific, for example: provide the chair by a date, apologise, change a decision.' }
+      ],
+      subject: function (d) { return 'Complaint about services for ' + d.person_name; },
+      body: function (d) { return [
+        'I am writing as ' + d.person_name + "'s " + d.your_role + ' to make a complaint under your complaints handling procedure.',
+        'What happened:\n' + d.what_happened,
+        'The effect this has had:\n' + d.impact,
+        'What I would like to happen:\n' + d.outcome,
+        'The model complaints handling procedure published by the Scottish Public Services Ombudsman provides for a frontline response within five working days, and an investigation stage of 20 working days. If this cannot be resolved at the frontline stage, please move it to the investigation stage and tell me who is dealing with it.'
+      ]; } },
+
+    { id: 'doctor', title: "Ask a doctor for a supporting letter", to: 'org',
+      when: 'Use this to ask a GP, consultant or nurse for a letter to support a benefit claim, a care assessment, equipment, travel or a complaint.',
+      fields: [
+        { k: 'sar_org', label: "Doctor's name and practice or hospital", hint: 'For example: Dr Smith, and the name of the practice or hospital.' },
+        { k: 'doc_for', label: 'What the letter is for', hint: 'For example: an Adult Disability Payment claim, a request for overnight support, a flight.' },
+        { k: 'doc_points', label: 'What it would help the letter to say', type: 'area', hint: 'For example: needs two people for all personal care; has seizures at night; needs suction.' },
+        { k: 'doc_by', label: 'Needed by', type: 'date' }
+      ],
+      subject: function (d) { return 'Request for a supporting letter: ' + d.person_name + ', born ' + d.person_dob; },
+      body: function (d) { return [
+        'I am writing as ' + d.person_name + "'s " + d.your_role + ' to ask for a letter to support ' + d.doc_for + '.',
+        'It would help most if the letter could describe ' + d.person_name + "'s diagnosis and needs, and in particular:\n" + d.doc_points,
+        'Please describe what ' + d.person_name + ' needs day to day and why, rather than only listing diagnoses.',
+        'I need the letter by ' + (d.doc_by ? new Date(d.doc_by + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : '\u0001date\u0002') + '. If there is a fee, please let me know before you write it.',
+        'Thank you for your help.'
+      ]; } },
+
+    { id: 'records', title: 'Ask for records (subject access request)', to: 'org',
+      when: 'Use this to get copies of the information an organisation holds, such as social work or NHS records.',
+      fields: [
+        { k: 'sar_org', label: 'Organisation', hint: 'For example: Glasgow City Council, or NHS Greater Glasgow and Clyde.' },
+        { k: 'sar_from', label: 'Records from (date)', type: 'date', hint: 'Leave blank for all records.' },
+        { k: 'sar_authority', label: 'Your authority to ask', hint: 'For example: I enclose a copy of my guardianship order.' }
+      ],
+      subject: function (d) { return 'Subject access request: ' + d.person_name + ', born ' + d.person_dob; },
+      body: function (d) { return [
+        'I am making a subject access request under Article 15 of the UK GDPR for all personal data that ' + d.sar_org + ' holds about ' + d.person_name + ', born ' + d.person_dob + (d.sar_from ? ', from ' + ukDate(d.sar_from) + ' to the present.' : '.'),
+        'I am making this request as ' + d.person_name + "'s " + d.your_role + '. ' + d.sar_authority,
+        'Please include records held in any form, including emails, case notes, assessments and records of phone calls, together with the information listed in Article 15(1), such as the purposes of processing and who the data has been shared with.',
+        'Under Articles 12(3) and 12A of the UK GDPR, you must respond without undue delay and within one month. Please send the information electronically.',
+        'If you need anything else to identify the information, please tell me straight away.'
+      ]; } }
+  ];
+
+  var details = MyFile.load().details;
+  var PLACE = { your_name: 'your name', your_role: 'parent / guardian / carer', your_address: 'your address', your_phone: 'your phone', your_email: 'your email',
+    person_name: "the person's name", person_dob: 'date of birth', council: 'council or partnership', sw_ref: 'reference', social_worker: 'social worker' };
+  var LETTER_KEY_PREFIX = 'letter_';
+  var current = LETTERS[0];
+
+  function val(k) {
+    var v = details[k] || details[LETTER_KEY_PREFIX + k];
+    return v ? String(v) : '\u0001' + (PLACE[k] || k) + '\u0002';
+  }
+  function esc(s) { return s.replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); }
+  function mark(s) { return esc(s).replace(/\u0001([^\u0002]*)\u0002/g, '<mark>[$1]</mark>'); }
+  function plain(s) { return s.replace(/\u0001([^\u0002]*)\u0002/g, '[$1]'); }
+
+  function build() {
+    var fd = function (k) { var r = details[LETTER_KEY_PREFIX + k]; return r || ''; };
+    var lines = [];
+    lines.push(val('your_name'));
+    lines.push(val('your_address'));
+    if (details.your_phone) lines.push(details.your_phone);
+    if (details.your_email) lines.push(details.your_email);
+    lines.push('');
+    lines.push(today());
+    lines.push('');
+    var to = current.to === 'org' ? (fd('sar_org') ? (current.id === 'records' ? 'Data Protection Officer\n' : '') + fd('sar_org') : '\u0001' + (current.id === 'doctor' ? 'doctor' : 'organisation') + '\u0002')
+           : val('council');
+    if (current.to === 'council' && details.social_worker) to = details.social_worker + '\n' + to;
+    lines.push(to);
+    lines.push('');
+    var refs = [];
+    if (details.sw_ref && current.to !== 'org') refs.push('Social work reference: ' + details.sw_ref);
+    if (details.chi && current.id === 'records') refs.push('CHI number: ' + details.chi);
+    if (refs.length) { lines.push(refs.join('\n')); lines.push(''); }
+    var dd = new Proxy({}, { get: function (_, k) {
+      if (k === 'promised_date' || k === 'reply_by' || k === 'sar_from' || k === 'doc_by') return fd(k);
+      return val(k);
+    } });
+    lines.push('Subject: ' + current.subject(dd));
+    lines.push('');
+    var named = current.to === 'council' && details.social_worker;
+    lines.push(named ? 'Dear ' + details.social_worker + ',' : 'Dear Sir or Madam,');
+    lines.push('');
+    current.body(dd).forEach(function (p) { lines.push(p); lines.push(''); });
+    lines.push(named ? 'Yours sincerely,' : 'Yours faithfully,');
+    lines.push('');
+    lines.push(val('your_name'));
+    lines.push(details.your_role ? details.person_name ? details.person_name + "'s " + details.your_role : details.your_role : '\u0001your relationship\u0002');
+    var text = lines.join('\n');
+    // blank dates inside sentences
+    text = text.replace(/On , /, 'On \u0001date\u0002, ').replace(/by  and/, 'by \u0001date\u0002 and');
+    return text;
+  }
+
+  function renderPreview() {
+    var t = build();
+    document.getElementById('letter-preview').innerHTML = mark(t);
+    return t;
+  }
+
+  function renderFields() {
+    var box = document.getElementById('letter-fields'); box.innerHTML = '';
+    current.fields.forEach(function (f) {
+      var wrap = document.createElement('div'); wrap.className = 'field' + (f.type === 'area' ? ' wide' : '');
+      var id = 'lf-' + current.id + '-' + f.k;
+      var lab = document.createElement('label'); lab.htmlFor = id; lab.textContent = f.label; wrap.append(lab);
+      if (f.hint) { var h = document.createElement('span'); h.className = 'hint'; h.textContent = f.hint; wrap.append(h); }
+      var input = document.createElement(f.type === 'area' ? 'textarea' : 'input');
+      if (f.type === 'date') input.type = 'date';
+      input.id = id; input.value = details[LETTER_KEY_PREFIX + f.k] || '';
+      input.addEventListener('input', function () {
+        var all = MyFile.load(); all.details[LETTER_KEY_PREFIX + f.k] = input.value.trim(); MyFile.save(all);
+        details = all.details; renderPreview();
+      });
+      wrap.append(input); box.append(wrap);
+    });
+  }
+
+  function select(l) {
+    current = l;
+    l.fields.forEach(function (f) { PLACE[f.k] = f.label.toLowerCase(); });
+    document.getElementById('letter-title').textContent = l.title;
+    document.getElementById('letter-when').textContent = l.when;
+    document.querySelectorAll('.letter-list button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.id === l.id ? 'true' : 'false'); });
+    renderFields(); renderPreview();
+    document.getElementById('copy-letter-status').textContent = '';
+    document.getElementById('letter-fallback').hidden = true;
+    try { history.replaceState(null, '', '#' + l.id); } catch (e) {}
+  }
+
+  var list = document.getElementById('letter-list');
+  LETTERS.forEach(function (l) {
+    var b = document.createElement('button'); b.type = 'button'; b.dataset.id = l.id; b.textContent = l.title;
+    b.addEventListener('click', function () { select(l); document.getElementById('letter-title').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    list.append(b);
+  });
+
+  document.getElementById('myfile-hint').hidden = !!(details.your_name && details.person_name);
+
+  document.getElementById('copy-letter').addEventListener('click', function () {
+    var text = plain(build());
+    var status = document.getElementById('copy-letter-status'), fb = document.getElementById('letter-fallback');
+    function fallback() { fb.value = text; fb.hidden = false; fb.focus(); fb.select(); status.textContent = 'Select the text below and copy it.'; }
+    try { navigator.clipboard.writeText(text).then(function () { status.textContent = /\[/.test(text) ? 'Copied. Some boxes are still blank: look for [square brackets].' : 'Copied. Paste it into an email or document.'; }, fallback); }
+    catch (e) { fallback(); }
+  });
+
+  var start = LETTERS.filter(function (l) { return '#' + l.id === location.hash; })[0] || LETTERS[0];
+  select(start);
+})();
+</script>
+</body>
+</html>

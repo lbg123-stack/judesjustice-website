@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My file · Jude's Justice PMLD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}*,*::before,*::after{box-sizing:border-box}img{max-width:100%}</style>
+<script src="site.js"></script>
+</head>
+<body>
+<div class="stickyhead"><div class="wrap">
+  <header class="top">
+    <div class="brand"><a href="index.html">Jude's <span>Justice</span></a></div>
+    <nav class="sitenav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="pmld.html">What is PMLD</a>
+      <details class="navgroup">
+        <summary>Help and rights</summary>
+        <div class="navpanel">
+          <a href="benefits.html">Benefits</a>
+          <a href="letters.html">Template letters</a>
+          <a href="services.html">Support services</a>
+        </div>
+      </details>
+      <details class="navgroup">
+        <summary>Care</summary>
+        <div class="navpanel">
+          <a href="health.html">Health and hospital</a>
+          <a href="training.html">Training</a>
+          <a href="equipment.html">Equipment</a>
+          <a href="own-week.html">Build your own week</a>
+        </div>
+      </details>
+      <a href="places.html">Places and therapies</a>
+      <a href="my-file.html" aria-current="page">My file<span class="count" data-myfile-count hidden></span></a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+</div></div>
+
+<div class="wrap">
+  <div class="article">
+    <nav class="toc" aria-label="On this page">
+      <p>On this page</p>
+      <a href="#you">About you</a>
+      <a href="#person">The person you care for</a>
+      <a href="#log">Calls and promises</a>
+      <a href="#keep">Copy or clear</a>
+    </nav>
+
+    <div class="prose">
+      <h1>My file</h1>
+      <p class="lede">Fill this in once. Your details will be filled into our template letters automatically, so you do not have to type them again.</p>
+      <div class="callout">
+        <p class="label">Private to you</p>
+        <p>Everything you enter here stays on this phone or computer. It is not sent to us or anyone else. If you use a different device, or clear your browser, it will not be there. Use <b>Copy everything</b> below to keep your own copy.</p>
+      </div>
+
+      <h2 id="you">About you</h2>
+      <div class="panel">
+        <div class="fields">
+          <div class="field"><label for="f-your_name">Your full name</label><input id="f-your_name" data-field="your_name" autocomplete="name"></div>
+          <div class="field"><label for="f-your_role">You are their</label>
+            <select id="f-your_role" data-field="your_role">
+              <option value="">Choose</option>
+              <option>parent</option><option>guardian</option><option>parent and guardian</option><option>carer</option><option>sibling</option><option>other family member</option><option>advocate</option>
+            </select></div>
+          <div class="field wide"><label for="f-your_address">Your address</label><textarea id="f-your_address" data-field="your_address" autocomplete="street-address"></textarea></div>
+          <div class="field"><label for="f-your_phone">Phone</label><input id="f-your_phone" data-field="your_phone" type="tel" autocomplete="tel"></div>
+          <div class="field"><label for="f-your_email">Email</label><input id="f-your_email" data-field="your_email" type="email" autocomplete="email"></div>
+        </div>
+      </div>
+
+      <h2 id="person">The person you care for</h2>
+      <div class="panel">
+        <div class="fields">
+          <div class="field"><label for="f-person_name">Their full name</label><input id="f-person_name" data-field="person_name"></div>
+          <div class="field"><label for="f-person_dob">Date of birth</label><input id="f-person_dob" data-field="person_dob" placeholder="e.g. 14 March 2006"></div>
+          <div class="field wide"><label for="f-person_address">Their address</label><span class="hint">Leave blank if it is the same as yours.</span><textarea id="f-person_address" data-field="person_address"></textarea></div>
+          <div class="field"><label for="f-council">Council or health and social care partnership</label><input id="f-council" data-field="council" placeholder="e.g. Glasgow City HSCP"></div>
+          <div class="field"><label for="f-social_worker">Social worker's name</label><input id="f-social_worker" data-field="social_worker"></div>
+          <div class="field"><label for="f-sw_ref">Social work reference number</label><input id="f-sw_ref" data-field="sw_ref"></div>
+          <div class="field"><label for="f-chi">NHS CHI number</label><span class="hint">The 10-digit number on NHS letters.</span><input id="f-chi" data-field="chi" inputmode="numeric"></div>
+          <div class="field wide"><label for="f-guardianship">Guardianship</label><span class="hint">If you are their guardian, the court and case number, and the date the order ends.</span><input id="f-guardianship" data-field="guardianship"></div>
+        </div>
+        <p class="status" id="details-status" aria-live="polite"></p>
+      </div>
+
+      <h2 id="log">Calls and promises</h2>
+      <p>Write down every call, meeting and promise, with the date. If you need to complain later, this record is your evidence.</p>
+      <form class="panel" id="record-form">
+        <div class="fields">
+          <div class="field"><label for="r-date">Date</label><input id="r-date" type="date" required></div>
+          <div class="field"><label for="r-who">Who, and which organisation</label><input id="r-who" placeholder="e.g. Jo Smith, wheelchair service" required></div>
+          <div class="field wide"><label for="r-what">What was said or promised</label><textarea id="r-what" required></textarea></div>
+          <div class="field"><label for="r-next">Chase it by</label><input id="r-next" type="date"></div>
+        </div>
+        <div class="btns"><button class="btn" type="submit">Add to my record</button><span class="status" id="record-status" aria-live="polite"></span></div>
+      </form>
+      <div id="record-empty" class="empty">No records yet. Your first call or promise will appear here, newest first.</div>
+      <ul class="records" id="records" hidden></ul>
+
+      <h2 id="keep">Copy or clear</h2>
+      <div class="btns">
+        <button class="btn" type="button" id="copy-all">Copy everything</button>
+        <button class="btn ghost" type="button" id="clear-all">Clear my file</button>
+        <span class="status" id="copy-status" aria-live="polite"></span>
+      </div>
+      <textarea id="copy-fallback" style="width:100%;min-height:10rem;font:inherit" hidden readonly aria-label="Your file as text"></textarea>
+      <div class="confirm" id="clear-confirm" hidden>
+        <p><b>Delete everything in My file on this device?</b> This cannot be undone.</p>
+        <div class="btns"><button class="btn" type="button" id="clear-yes">Yes, delete it</button><button class="btn ghost" type="button" id="clear-no">Keep it</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Jude's Justice PMLD is a Scottish Charitable Incorporated Organisation (SCIO), Scottish charity number SC055712. Principal office: Office 1618, 3 Fitzroy Place, 1/1 Sauchiehall Street, Glasgow G3 7RH.</p>
+    <p>We give information, not legal advice, and we do not act in court proceedings. Where you need a lawyer, see <a href="services.html#legal">Legal help</a>.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var data = MyFile.load();
+  var fields = document.querySelectorAll('[data-field]');
+  var detailsStatus = document.getElementById('details-status');
+  var t;
+
+  fields.forEach(function (el) {
+    var k = el.getAttribute('data-field');
+    if (data.details[k]) el.value = data.details[k];
+    el.addEventListener('input', function () {
+      data.details[k] = el.value.trim();
+      var ok = MyFile.save(data);
+      clearTimeout(t);
+      detailsStatus.textContent = ok ? 'Saved on this device.' : 'This browser is not letting us save. Use Copy everything to keep a copy.';
+      t = setTimeout(function () { detailsStatus.textContent = ''; }, 2500);
+      MyFile.badge();
+    });
+  });
+
+  var list = document.getElementById('records'), empty = document.getElementById('record-empty');
+  function fmt(iso) {
+    if (!iso) return '';
+    var p = iso.split('-'); var m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return Number(p[2]) + ' ' + m[Number(p[1]) - 1] + ' ' + p[0];
+  }
+  function render() {
+    var rs = data.records.slice().sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
+    list.innerHTML = '';
+    rs.forEach(function (r) {
+      var li = document.createElement('li');
+      var when = document.createElement('span'); when.className = 'when'; when.textContent = fmt(r.date);
+      var body = document.createElement('div');
+      var who = document.createElement('div'); who.className = 'who'; who.textContent = r.who;
+      var what = document.createElement('div'); what.className = 'what'; what.textContent = r.what;
+      body.append(who, what);
+      if (r.next) { var n = document.createElement('div'); n.className = 'next'; n.textContent = 'Chase by ' + fmt(r.next); body.append(n); }
+      var del = document.createElement('button'); del.type = 'button'; del.className = 'del'; del.textContent = 'Delete';
+      del.addEventListener('click', function () {
+        data.records = data.records.filter(function (x) { return x.id !== r.id; });
+        MyFile.save(data); render(); MyFile.badge();
+      });
+      li.append(when, body, del);
+      list.append(li);
+    });
+    list.hidden = rs.length === 0; empty.hidden = rs.length > 0;
+  }
+  render();
+
+  var form = document.getElementById('record-form');
+  document.getElementById('r-date').value = new Date().toISOString().slice(0, 10);
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    data.records.push({
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+      date: document.getElementById('r-date').value,
+      who: document.getElementById('r-who').value.trim(),
+      what: document.getElementById('r-what').value.trim(),
+      next: document.getElementById('r-next').value
+    });
+    var ok = MyFile.save(data);
+    document.getElementById('record-status').textContent = ok ? 'Added.' : 'Added for now, but this browser is not saving. Copy everything before you leave.';
+    ['r-who', 'r-what', 'r-next'].forEach(function (id) { document.getElementById(id).value = ''; });
+    render(); MyFile.badge();
+  });
+
+  var labels = { your_name: 'Your name', your_role: 'Relationship', your_address: 'Your address', your_phone: 'Phone', your_email: 'Email',
+    person_name: 'Person cared for', person_dob: 'Date of birth', person_address: 'Their address', council: 'Council / HSCP',
+    social_worker: 'Social worker', sw_ref: 'Social work reference', chi: 'CHI number', guardianship: 'Guardianship' };
+  function asText() {
+    var out = ['MY FILE', ''];
+    Object.keys(labels).forEach(function (k) { if (data.details[k]) out.push(labels[k] + ': ' + data.details[k]); });
+    if (data.records.length) {
+      out.push('', 'CALLS AND PROMISES');
+      data.records.slice().sort(function (a, b) { return (a.date || '').localeCompare(b.date || ''); }).forEach(function (r) {
+        out.push('', fmt(r.date) + ' - ' + r.who, r.what);
+        if (r.next) out.push('Chase by ' + fmt(r.next));
+      });
+    }
+    return out.join('\n');
+  }
+  var copyStatus = document.getElementById('copy-status'), fallback = document.getElementById('copy-fallback');
+  document.getElementById('copy-all').addEventListener('click', function () {
+    var text = asText();
+    function showFallback() {
+      fallback.value = text; fallback.hidden = false; fallback.focus(); fallback.select();
+      copyStatus.textContent = 'Select the text below and copy it.';
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () { copyStatus.textContent = 'Copied. Paste it into an email or note to keep it.'; }, showFallback);
+    } catch (e) { showFallback(); }
+  });
+
+  var confirmBox = document.getElementById('clear-confirm');
+  document.getElementById('clear-all').addEventListener('click', function () { confirmBox.hidden = false; });
+  document.getElementById('clear-no').addEventListener('click', function () { confirmBox.hidden = true; });
+  document.getElementById('clear-yes').addEventListener('click', function () {
+    MyFile.clear(); data = { details: {}, records: [] };
+    fields.forEach(function (el) { el.value = ''; });
+    render(); MyFile.badge(); confirmBox.hidden = true;
+    copyStatus.textContent = 'My file has been cleared.';
+  });
+})();
+</script>
+</body>
+</html>
